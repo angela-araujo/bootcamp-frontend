@@ -1,8 +1,8 @@
 import React from 'react';
-import {Container, Grid} from '@mui/material';
+import { Container, Grid } from '@mui/material';
 import login from '../../assets/icons/logo.svg';
-import { Logo, Wrapper } from './login.styled';
 import Form from './components/form/form.component';
+import { Logo, Wrapper } from './login.styled';
 
 export default function Login() {
     return (
