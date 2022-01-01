@@ -1,11 +1,11 @@
 import React, { useCallback, useState } from 'react';
 import Button from '../../../../components/buttons/button/button.component';
 import InputText from '../../../../components/inputs/input-text/input-text.component';
-import * as yup from 'yup';
 import { ErrorMessage } from './form.types';
 import { ErrorDescription } from './form.styled';
 import { userActions } from '../../../../store/user/user.slice';
 import { useDispatch } from 'react-redux';
+import * as yup from 'yup'; // Para validação de campos
 
 const errorInitial = '';
 
