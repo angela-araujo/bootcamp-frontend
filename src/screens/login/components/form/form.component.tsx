@@ -10,6 +10,10 @@ import * as yup from 'yup'; // Para validação de campos
 const errorInitial = '';
 
 export default function Form() {
+
+    /* useState: Retorna um valor e uma função para atualizar o valor. 
+    Durante a renderização inicial, o estado retornado é o mesmo que 
+    o valor passado como argumento inicial (initialState). */
     const [data, setData] = useState({ email: '', password: ''});
     const [error, setError] = useState(errorInitial);
 

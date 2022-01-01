@@ -1,4 +1,3 @@
-import React from 'react';
 import { Container, Grid } from '@mui/material';
 import login from '../../assets/icons/logo.svg';
 import Form from './components/form/form.component';
