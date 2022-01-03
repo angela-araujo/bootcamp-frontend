@@ -9,14 +9,20 @@ import { Provider } from 'react-redux';
 import store from './store/store/store';
 
 function App() {
+
   return (
+    // O <Provider>componente torna o Redux store disponível 
+    // para qualquer componente aninhado que precise acessar 
+    // a loja Redux. 
     <Provider store={store}>
-        <ThemeProvider theme={theme}>      
-            <GlobalStyle />
-            <Routes>
-                <Route path={LoginPath} element={<Login />} />
-            </Routes>
-        </ThemeProvider>
+      {/* */}
+      <ThemeProvider theme={theme}>
+        {/* Criando estilo global da aplicação */}
+        <GlobalStyle />
+        <Routes>
+          <Route path={LoginPath} element={<Login />} />
+        </Routes>
+      </ThemeProvider>
     </Provider>
   );
 }

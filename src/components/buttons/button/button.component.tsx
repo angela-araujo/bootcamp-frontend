@@ -1,10 +1,10 @@
 import styled, {css} from 'styled-components';
-import theme from '../../../themes/main/theme';
 
 const Primary = css`
     color: ${props => props.theme.palette.typography.primary};
     background: ${props => props.theme.palette.core.primary};
 `
+
 const Secondary = css`
     color: ${props => props.theme.palette.typography.secondary};
     background: ${props => props.theme.palette.core.secondary};
@@ -17,7 +17,6 @@ const Hover = css`
 `
 
 const Button = styled.a<any>`
-
     width: 100%;
     margin: 1rem 0;
     cursor: pointer;
