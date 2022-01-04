@@ -1,11 +1,14 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
+import * as yup from 'yup'; // Para validação de campos
 import Button from '../../../../components/buttons/button/button.component';
 import InputText from '../../../../components/inputs/input-text/input-text.component';
 import { ErrorMessage } from './form.types';
 import { ErrorDescription } from './form.styled';
 import { userActions } from '../../../../store/user/user.slice';
-import { useDispatch } from 'react-redux';
-import * as yup from 'yup'; // Para validação de campos
+import { useDispatch, useSelector } from 'react-redux';
+import { isAuthenticated } from '../../../../store/user/user.selectors';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { HomePath } from '../../../home/home.types';
 
 const errorInitial = '';
 
@@ -18,6 +21,19 @@ export default function Form() {
     const [error, setError] = useState(errorInitial);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const isUserAuthentication = useSelector(isAuthenticated);
+
+    useEffect(
+        () => {
+            if (isUserAuthentication) {
+                const to = location.state?.form?.pathname || HomePath
+                navigate(to)
+            }
+        },
+        [isUserAuthentication]
+    )
 
     const resetError = useCallback(
         () => setError(errorInitial),
@@ -67,7 +83,7 @@ export default function Form() {
         [validation, data]
     )
 
-    console.log(data, 'data')
+    // console.log(data, 'data')
 
     return (
         <>
