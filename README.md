@@ -14,12 +14,13 @@ No diretório do projeto, execute o comando: `npm start`
 ## Planejamento de desenvolvimento
 
 ### Implementar (TODO)
-- [x] Adicionar Header nas páginas logadas (guard)
-- [ ] Exibir retorno da API do backend quando login falhar
-- [ ] Exibir lista de filmes na Home
+- [x] Criar Header para páginas logadas (guard)
+- [ ] Lista de filmes na página Home
+- [ ] Página Filme selecionado
 - [ ] Melhorar (estilização) mensagem de PageNotFound
 
 ### Corrigir (FIXME)
+- [ ] Exibir retorno da API do backend quando login falhar
 - [ ] Evitar que usuário execute várias chamadas no botão de login 
 
 
