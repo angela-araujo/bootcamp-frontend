@@ -29,7 +29,7 @@ export default function Form() {
         () => {
             if (isUserAuthentication) {
                 const to = location.state?.form?.pathname || HomePath
-                // navigate(to) //comentado apenas para testar o código
+                navigate(to) //comentado apenas para testar o código
             }
         },
         [isUserAuthentication]

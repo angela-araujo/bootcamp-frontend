@@ -1,4 +1,4 @@
-import { UserState } from "../user/user.types"
+import { UserState } from "../user/user.types";
 
 export type Action<K> = {
     type: string
