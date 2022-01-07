@@ -13,21 +13,17 @@ import UserGuard from './components/routers/user-guard/user-guard.component';
 
 
 function App() {
-
-  // const navigate = useNavigate();
-  // useEffect(
-  //   () => {
-  //     navigate(HomePath)
-  //   },
-  //   []
-  // )
+  
+  function GuardHome() {
+    return <UserGuard><Home /></UserGuard>
+  }
 
   return (
     // O <Provider>componente torna o Redux store disponível 
     // para qualquer componente aninhado que precise acessar 
     // a loja Redux. 
     <Provider store={store}>
-      
+
       {/* Escolha do tema */}
       <ThemeProvider theme={theme}>
 
@@ -35,7 +31,8 @@ function App() {
         <GlobalStyle />
         <Routes>
           <Route path={LoginPath} element={<Login />} />
-          <Route path={HomePath} element={<UserGuard><Home /></UserGuard>} />
+          <Route path={'/'} element={<GuardHome />} />
+          <Route path={HomePath} element={<GuardHome />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
 
