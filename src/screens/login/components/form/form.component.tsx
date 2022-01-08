@@ -88,7 +88,7 @@ export default function Form() {
             <InputText type={'text'} placeholder={'E-mail'} name={'email'} onChange={(evento): void => handleChange(evento)} />
             <InputText type={'password'} placeholder={'Senha'} name={'password'} onChange={(evento) => handleChange(evento)} />
             <ErrorDescription>{error || loginErrorMessage}</ErrorDescription>
-            <Button primary onClick={onSubmit}>Entrar</Button>        
+            <Button primary onClick={onSubmit}>{buttonDescription}</Button>        
         </>
     )
 }
