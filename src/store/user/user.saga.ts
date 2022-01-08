@@ -1,7 +1,7 @@
 import { put, takeEvery, all, call } from 'redux-saga/effects'
 import { userActions } from "./user.slice";
 import sessionService from "../../services/session/session.service";
-import {AccessTokenStorageKey, UserAction} from "./user.types";
+import { AccessTokenStorageKey, UserAction } from "./user.types";
 import { GetSession, PostSessionNew } from "../../services/user/user.types";
 
 export function* login(props: UserAction) {
@@ -32,7 +32,6 @@ export function* loginByToken() {
 
         if (accessToken) {
             const { data: { userId: id } }: GetSession = yield call(sessionService().getSession, accessToken)
-
             yield put(userActions.setData({ id }))
         }
     } catch (error) {

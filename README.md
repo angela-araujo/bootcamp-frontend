@@ -20,7 +20,7 @@ No diretório do projeto, execute o comando: `npm start`
 - [ ] Melhorar (estilização) mensagem de PageNotFound
 
 ### Corrigir (FIXME)
-- [ ] Exibir retorno da API do backend quando login falhar
+- [x] Exibir retorno da API do backend quando login falhar
 - [ ] Evitar que usuário execute várias chamadas no botão de login 
 
 

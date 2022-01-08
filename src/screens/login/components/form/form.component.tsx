@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect, useMemo } from 'react';
 import * as yup from 'yup'; // Para validação de campos
 import Button from '../../../../components/buttons/button/button.component';
 import InputText from '../../../../components/inputs/input-text/input-text.component';
@@ -6,7 +6,7 @@ import { ErrorMessage } from './form.types';
 import { ErrorDescription } from './form.styled';
 import { userActions } from '../../../../store/user/user.slice';
 import { useDispatch, useSelector } from 'react-redux';
-import { isAuthenticated } from '../../../../store/user/user.selectors';
+import { errorMessage, isAuthenticated, isLoading } from '../../../../store/user/user.selectors';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { HomePath } from '../../../home/home.types';
 
@@ -14,9 +14,6 @@ const errorInitial = '';
 
 export default function Form() {
 
-    /* useState: Retorna um valor e uma função para atualizar o valor. 
-    Durante a renderização inicial, o estado retornado é o mesmo que 
-    o valor passado como argumento inicial (initialState). */
     const [data, setData] = useState({ email: '', password: ''});
     const [error, setError] = useState(errorInitial);
 
@@ -24,19 +21,28 @@ export default function Form() {
     const navigate = useNavigate();
     const location = useLocation();
     const isUserAuthentication = useSelector(isAuthenticated);
+    const isUserLoading = useSelector(isLoading);
+    const loginErrorMessage = useSelector(errorMessage);
 
     useEffect(
         () => {
             if (isUserAuthentication) {
-                const to = location.state?.form?.pathname || HomePath
-                navigate(to) //comentado apenas para testar o código
+                const to = location.state?.form?.pathname || HomePath;
+                navigate(to);                
             }
         },
         [isUserAuthentication]
     )
 
+    const buttonDescription = useMemo(
+        () => isUserLoading? 'Carregando...': 'Entrar',
+        [isUserLoading]
+    )
+    
     const resetError = useCallback(
-        () => setError(errorInitial),
+        () => { 
+            setError(errorInitial);            
+        },
         []
     )
 
@@ -58,15 +64,10 @@ export default function Form() {
             try {
                 await schema.validate(data);
                 resetError();
-                console.log(true, 'validate schema yup');
-
                 return true;
-
             } catch (error) {
-                // Persiste o erro para poder exibir
                 // @ts-ignore
-                setError(error.errors[0]);
-                
+                setError(error.errors[0]);                
                 return false
             }
         },
@@ -76,20 +77,17 @@ export default function Form() {
     const onSubmit = useCallback(
         async () => {
             if(await validation()) {
-                dispatch(userActions.login(data))
+                dispatch(userActions.login(data))            
             }
-            console.log(data)
         },
         [validation, data]
     )
-
-    // console.log(data, 'data')
 
     return (
         <>
             <InputText type={'text'} placeholder={'E-mail'} name={'email'} onChange={(evento): void => handleChange(evento)} />
             <InputText type={'password'} placeholder={'Senha'} name={'password'} onChange={(evento) => handleChange(evento)} />
-            <ErrorDescription>{error}</ErrorDescription>
+            <ErrorDescription>{error || loginErrorMessage}</ErrorDescription>
             <Button primary onClick={onSubmit}>Entrar</Button>        
         </>
     )
