@@ -1,41 +1,23 @@
-import styled, {css} from 'styled-components';
 import logo from '../../../assets/icons/logo.svg';
 import menu from '../../../assets/icons/menu.svg';
+import avatar from '../../../assets/icons/avatar-person.svg';
+import { Logo, Menu, Profile } from './header.styled';
+import { Container, Grid } from '@mui/material';
 
-const DivLogo = styled.a`
-    &::before {
-        content: url(${logo});
-    }
-`
 
-const DivNavigation = styled.div`
-    width: 100%;
-    top: 0;
-    height: 77px;
-    
-`
-// Menu de navegação
-const NavLeft = styled.a`
-    
-    background-image: url(${menu});
-    max-height: 77px;
-
-`
-
-// Menu de perfil do usuário logado
-const NavRight = styled.div`
-    width: 100%;
-    top: 0;
-    height: 77px;
-    
-`
 function Header() {
     return (
-        <DivNavigation>
-            <NavLeft></NavLeft>
-            <DivLogo />
-            <NavRight></NavRight>
-        </DivNavigation>
+        <>
+            <Container>
+                <Grid container alignItems={'center'} justifyContent={'center'}>
+                    <Grid item xs={10} alignItems={'center'} justifyContent={'center'} marginTop={'15px'} height={'70px'} display={'flex'}>
+                        <a href='#'><Menu src={menu} alt={'Menu'}/></a>
+                        <Logo src={logo} alt={'Netflix logo'} />
+                        <a href='#'><Profile src={avatar} alt={'Perfil'} /></a>
+                    </Grid>
+                </Grid>
+            </Container>
+        </>
     )
 }
 
