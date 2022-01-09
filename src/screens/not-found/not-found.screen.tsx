@@ -5,10 +5,10 @@ import MessageNotFound from "./components/not-found.component";
 export default function NotFound() {
     return (
         <>
+            <Header />
             <Container>
-                <Grid item xs={3} justifyContent={'center'}>
-                    <Grid container justifyContent={'center'}>
-                        <Header />
+                <Grid container justifyContent={'center'}>                        
+                    <Grid item xs={3} justifyContent={'center'}>
                         <MessageNotFound />
                     </Grid>
                 </Grid>
