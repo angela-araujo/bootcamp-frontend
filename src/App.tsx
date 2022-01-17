@@ -4,10 +4,12 @@ import theme from './themes/main/theme';
 import Login from './screens/login/login.screen';
 import Home from './screens/home/home.screen';
 import NotFound from './screens/not-found/not-found.screen';
+import MoviePage from './screens/movie-page/movie-page.screen';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './themes/main/global-style';
 import { LoginPath } from './screens/login/login.types';
 import { HomePath } from './screens/home/home.types';
+import { MoviePath } from './screens/movie-page/movie-page.types';
 import store from './store/store/store';
 import UserGuard from './components/routers/user-guard/user-guard.component';
 
@@ -33,6 +35,7 @@ function App() {
           <Route path={LoginPath} element={<Login />} />
           <Route path={'/'} element={<GuardHome />} />
           <Route path={HomePath} element={<GuardHome />} />
+          <Route path={MoviePath} element={<MoviePage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
 
