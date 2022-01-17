@@ -11,12 +11,20 @@ No diretório do projeto, execute o comando: `npm start`
 >Para rodar a aplicação em modo de desenvolvedor.\
 >Abra [http://localhost:3000](http://localhost:3000) no seu navegador.
 
+
+Endereço na AWS\
+> <http://bootcamp-frontend.s3-website-sa-east-1.amazonaws.com/>
+>
+>Usuário para teste:\
+email: angela16@teste.com\
+senha: angela16
+
 ## Planejamento de desenvolvimento
 
 ### Implementar (TODO)
 - [x] Criar Header para páginas logadas (guard)
-- [ ] Lista de filmes na página Home
-- [ ] Página Filme selecionado
+- [x] Lista de filmes na página Home
+- [x] Página Filme selecionado
 - [ ] Melhorar (estilização) mensagem de PageNotFound
 
 ### Corrigir (FIXME)
