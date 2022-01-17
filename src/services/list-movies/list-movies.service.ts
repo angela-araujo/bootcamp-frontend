@@ -1,12 +1,12 @@
 import { GetListMovies } from "./list-movies.types";
-import axiosInstance from "../../modules/axios/axios.module"
-
+import axiosInstance from "../../modules/axios/axios.module";
+import { Session } from "../session/session.types";
 export default function listMoviesService() {
     
-    const getLisMovies = (): Promise<GetListMovies> => axiosInstance.get('list')
+    const getLisMovies = (accessToken: Session['accessToken']): Promise<GetListMovies> => axiosInstance.get('list', {
+        headers: { authorization: accessToken }
+    })
     
-    console.log(getLisMovies, 'list-movies.service getListMovies');
-
     return { getLisMovies }
     
 }

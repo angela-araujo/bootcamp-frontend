@@ -1,21 +1,20 @@
 import { put, takeEvery, all, call } from 'redux-saga/effects'
 import listMoviesService from '../../services/list-movies/list-movies.service';
-import { GetListMovies } from '../../services/list-movies/list-movies.types';
 import { AccessTokenStorageKey } from '../user/user.types';
 import { listMoviesActions } from "./list-movies.slice";
 
 export function* buscar() {
-    try {        
+    try {
+        const accessToken = localStorage.getItem(AccessTokenStorageKey)
 
-        const { data: { listMovies: listMovies} }: GetListMovies = yield call(listMoviesService().getLisMovies);
-            
-        yield put(listMoviesActions.setData(listMovies))
-        
-        console.log('buscar data');
+        if (accessToken) {
+            const { data }  = yield call(listMoviesService().getLisMovies, accessToken);
+            yield put(listMoviesActions.setData(data))
+            console.log('buscar data', data);
+        }
 
     } catch (error) {
         // @ts-ignore
-        console.log(error); // @ts-ignore
         yield put(listMoviesActions.setError(error.response.data.message));
     }
 }

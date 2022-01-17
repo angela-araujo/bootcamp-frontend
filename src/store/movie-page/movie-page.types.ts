@@ -1,6 +1,6 @@
 import { Action } from '../store/store.types';
 
-export type ListMovies = {
+export type MoviePage = {
     _id?: string
     name?: string
     category?: string
@@ -11,13 +11,13 @@ export type ListMovies = {
     createdAt?: string
     updatedAt?: string
     __v?: string
-}[];
+};
 
-export type ListMoviesState = {
-    data: ListMovies | null
+export type MoviePageState = {
+    data: MoviePage | null
     error: string
 }
 
-export type ListMoviesAction = Action<ListMovies>
+export type MoviePageAction = Action<MoviePage>
 
 export type SetErrorAction = Action<string>

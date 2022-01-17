@@ -1,41 +1,62 @@
 import { Button, Paper } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
-import { H2Banner, ImgBanner } from '../components/banner.styled';
+import { moviesActions } from '../../../store/movies/movies.slice';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { moviesLoaded } from "../../../store/movies/movies.selectors";
+import { DivBanner, ImgBanner } from '../components/banner.styled';
+import { Movies } from "../../../store/movies/movies.types";
 
 export default function Banner() {
-    const items = [
-        {
-            name: 'Titanic',
-            poster: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg',
-            backdrop: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/6VmFqApQRyZZzmiGOQq2C92jyvH.jpg',
-        },
-        {
-            name: 'Venom',
-            poster: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/rjkmN1dniUHVYAtwuV3Tji7FsDO.jpg',
-            backdrop: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/70nxSw3mFBsGmtkvcs91PbjerwD.jpg',
-        },
-    ]
+
+    const dispatch = useDispatch();
+    const movies = useSelector(moviesLoaded);
+    const [data, setData] = useState({
+        "page": "1",
+        "limit": "1",
+        "previousPage": "0",
+        "nextPage": "0",
+        "totalItems": "1",
+        "totalPages": "1",
+        "data": [{
+            "_id": "",
+            "name": "",
+            "category": "",
+            "description": "",
+            "media_type": "",
+            "poster": "",
+            "backdrop": "",
+            "createdAt": "",
+            "updatedAt": "",
+            "__v": ""
+        }]
+    });
+
+    const catalog = movies?.data.slice(6,10);
+
+    useEffect(
+        () => {
+            dispatch(moviesActions.getData(data as Movies));
+            console.log('useEffect Home', movies);
+            console.log('movies?.data', catalog);
+        }, []
+    )
+
 
     return (
-        <Carousel>
+        <Carousel navButtonsAlwaysVisible changeOnFirstRender >
             {
-                items.map( (item, i) => <Item key={i} item={item} /> )
+                catalog?.map((item, i) => <Item key={i} item={item} />)
             }
         </Carousel>
     )
 }
 
-function Item(props: any)
-{
+function Item(props: any) {
     return (
-        <Paper>
-            <H2Banner>{props.item.name}</H2Banner>
-            <ImgBanner src={props.item.poster} alt={props.item.name} />
-
-            <Button className="CheckButton">
-                            
-            </Button>
-            
-        </Paper>
+        <DivBanner>
+            <ImgBanner src={props.item.backdrop} alt={props.item.name} />
+            {/* <Button className="CheckButton"></Button> */}
+        </DivBanner>
     )
 }

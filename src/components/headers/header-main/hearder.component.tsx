@@ -8,15 +8,19 @@ import { Container, Grid } from '@mui/material';
 function Header() {
     return (
         <>
-            <Container>
-                <Grid container alignItems={'center'} justifyContent={'center'}>
-                    <Grid item xs={10} alignItems={'center'} justifyContent={'center'} marginTop={'15px'} height={'70px'} display={'flex'}>
-                        <a href='#'><Menu src={menu} alt={'Menu'}/></a>
-                        <Logo src={logo} alt={'Netflix logo'} />
-                        <a href='#'><Profile src={avatar} alt={'Perfil'} /></a>
-                    </Grid>
+
+            <Grid container alignItems={'center'} justifyContent={'center'} margin={'15px 0'} height={'70px'}>
+                <Grid item xs={1} alignItems={'center'} justifyContent={'center'} display={'flex'}>
+                    <a href='#'><Menu src={menu} alt={'Menu'} /></a>
                 </Grid>
-            </Container>
+                <Grid item xs={6} alignItems={'center'} justifyContent={'center'} display={'flex'}>
+                    <Logo src={logo} alt={'Netflix logo'} />
+                </Grid>
+                <Grid item xs={1} alignItems={'center'} justifyContent={'center'} display={'flex'}>
+                    <a href='#'><Profile src={avatar} alt={'Perfil'} /></a>
+                </Grid>
+            </Grid>
+
         </>
     )
 }
